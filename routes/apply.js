@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Recruit, Company} = require('../models')
+const {Recruit, Company, User} = require('../models')
 
 
 const addCompanyInfo = async (item)=>{
@@ -80,5 +80,30 @@ router.get('/:id/detail',async (req,res,next)=>{
 
 });
 
+
+router.post('/:id/gogo',async (req,res,next)=>{
+    // 입사지원
+    let isApplied = await User.findOne({attributes: ['is_applied']},{
+        user_id:req.body.user_id
+    });
+    if(!isApplied){
+        return res.status(500).json({message:"사용자 정보를 확인해주세요"});
+    }
+    isApplied = isApplied.dataValues.is_applied
+    if(!isApplied){
+        await User.update({
+            recruit_id:req.params.id,
+            is_applied:true
+        },{
+            where:{
+                user_id:req.body.user_id
+            }
+        });
+        return res.json({message:"당신의 도전을 응원합니다."})
+    } else {
+        return res.status(500).json({message:"입사 지원은 한번만 가능합니다."})
+    }
+    
+});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Company} = require('../models');
+const {User, Company} = require('../models');
 
 
 router.post('/createCompany', async (req,res,next)=>{
@@ -14,6 +14,15 @@ router.post('/createCompany', async (req,res,next)=>{
     res.status(200).json({newCompany});
 });
 
+router.post('/createUser', async (req,res,next)=>{
+    // 사용자 등록
+    const newUser = await User.create({
+        user_name:req.body.name,
+        is_applied:false
+    });
+    console.log(newUser);
+    res.status(200).json({newUser});
+});
 
 
 module.exports = router;

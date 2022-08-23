@@ -39,4 +39,16 @@ router.post('/modify',async (req,res,next)=>{
 });
 
 
+router.post('/delete',async (req,res,next) => {
+    // 채용공고 삭제
+    await Recruit.destroy({
+        where: {
+            recruit_id:req.body.recruit_id
+        }
+    })
+    console.log('채용공고 삭제');
+    res.status(200).json({message : `deleted ${req.body.recruit_id} `});
+});
+
+
 module.exports = router;

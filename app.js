@@ -10,6 +10,14 @@ const app = express();
 
 app.use(express.urlencoded({extended : false}));
 
+db.sequelize.sync({force:false})
+    .then(()=>{
+        console.log('success');
+    })
+    .catch((err)=>{
+        console.log('fail : ', err);
+    });
+
 app.use(logger('dev'));
 app.use(express.json());
 

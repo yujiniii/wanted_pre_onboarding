@@ -70,7 +70,7 @@ const getRecruitDetail = async (req,res,next)=>{
     theRecruit = await addCompanyInfo(theRecruit);
 
      // 회사의 다른 채용공고 추가
-    let ids = await addAnotherRecruit(theRecruit.dataValues.company_id);s)
+    let ids = await addAnotherRecruit(theRecruit.dataValues.company_id);
     theRecruit.dataValues['another_recruit'] = ids;
     
 

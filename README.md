@@ -1,5 +1,12 @@
 #  원티드 프리온보딩 4차 선발과제 제출 | wanted_pre_onboarding
-`nodejs`
+`nodejs`  
+  
+**>> 바로 가기 <<**
+#### [소개](https://github.com/yujiniii/wanted_pre_onboarding/edit/main/README.md#-%EC%86%8C%EA%B0%9C)  
+#### [API 정리](https://github.com/yujiniii/wanted_pre_onboarding/edit/main/README.md#-api-%EC%95%88%EB%82%B4)  
+#### [시작하기](https://github.com/yujiniii/wanted_pre_onboarding/edit/main/README.md#-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)  
+#### [사용한 패키지](https://github.com/yujiniii/wanted_pre_onboarding/edit/main/README.md#-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%95%88%EB%82%B4)  
+
 ## 📌 소개
 기업의 채용공고 관리 및 사용자의 공고 조회, 입사지원 API 서비스입니다.   
 
@@ -25,7 +32,7 @@
 
 ## 📌 API 안내
 [POSTMAN documantation](https://documenter.getpostman.com/view/19606295/VUqrPcgq)
-### [채용공고 등록] /recruit/new
+### [채용공고 등록]
 > `POST`  **localhost:3001/recruit/new**
 #### 🚩 request **[body]**
 ```json
@@ -51,7 +58,7 @@
 }
 ```
 
-### [채용공고 수정] /recruit/modify
+### [채용공고 수정]
 > `POST`  **localhost:3001/recruit/modify**
 #### 🚩 request **[body]**
 ```json
@@ -85,9 +92,9 @@
 }
 ```
 
-### [채용공고 삭제] /recruit/delelte
+### [채용공고 삭제]
 > `POST`  **localhost:3001/recruit/delelte**
-#### 🚩 request
+#### 🚩 request  **[body]**
 ``` json
 {
     "recruit_id":1
@@ -106,9 +113,9 @@
 }
 ```
 
-### [모든 채용공고 조회] /apply/all
+### [모든 채용공고 조회]
 > `GET`  **localhost:3001/apply/all**
-#### 🚩 request
+#### 🚩 request **[body]**
 ``` 
 none 
 ```
@@ -141,7 +148,7 @@ none
 ```
 🎯 회사 정보까지 함께 표출, 채용공고 상세는 보이지 않습니다.
 
-### [특정 채용공고 상세보기] /apply/:id/detail
+### [특정 채용공고 상세보기]
 > `GET`  **localhost:3001/apply/:id/detail**
 #### 🚩 request [PARAMS]
 ```
@@ -176,8 +183,8 @@ id : 2 ----> recruit_id
     "message": "채용공고 정보를 확인해주세요"
 }
 ```
-### [입사 지원] /apply/:id/gogo
-> `GET`  **localhost:3001/apply/:id/gogo**
+### [입사 지원]
+> `POST`  **localhost:3001/apply/:id/gogo**
 #### 🚩 request
 **[PARAMS]**
 ```
@@ -201,5 +208,37 @@ id : 1 ----> recruit_id
     "message": "입사 지원은 한번만 가능합니다."
 }
 ```
+**🎯 만약 존재하지 않는 채용공고 id를 입력했다면???**
+```json
+{
+    "message": "채용공고 정보를 확인해 주세요"
+}
+```
+**🎯 만약 존재하지 않는 사용자 id를 입력했다면???**
+```json
+{
+    "message": "사용자 정보를 확인해주세요"
+}
+```
 
+## 📌 시작하기
+```consol
+npm init
+npm start
+```
+config/dev.env 파일 생성
+```env
+POSTGRESQL_PASSWORD= (your password)
+```
+## 📌 패키지 안내
+사용한 패키지는  표와 같습니다.
+|패키지 이름|버전|설명|
+|------|---|---|
+|dotenv|^16.0.1|env 파일 연결을 위해 사용|
+|express|^4.18.1|express로 서버를 제작하기 위해 사용|
+|morgan|^1.10.0|logger설정을 위해 사용|
+|pg|^8.7.3|postgres 모듈|
+|postgres|^3.2.4|postgres 모듈|
+|sequelize|^6.21.3|postgreSQL을 만들고, 제어하기 위한 ORM 패키지 |
+|nodemon|^2.0.19|개발시 서버가 계속 가동할 수 있게 하기 위해 사용|
 

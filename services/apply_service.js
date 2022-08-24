@@ -1,5 +1,5 @@
 const {Recruit, Company, User} = require('../models')
-
+const find = require('./recruit_service')
 
 const addCompanyInfo = async (item)=>{
     let companyInfo = await Company.findOne({
@@ -54,16 +54,8 @@ const getAllRecruit = async (req,res,next)=>{
 
 const getRecruitDetail = async (req,res,next)=>{
     // 채용공고 상세보기
-    
-    let theRecruit = await Recruit.findOne(
-        { where: {
-            recruit_id : req.params.id
-            }
-        })
-    .catch((err) => {
-        return next(err);
-    });
-    if(!theRecruit){
+    let theRecruit = find.findRecruit(req.params.id);
+    if(theRecruit){
         return res.status(500).json({message:"채용공고 정보를 확인해주세요"});
     }
     // 회사정보추가 
@@ -82,6 +74,10 @@ const getRecruitDetail = async (req,res,next)=>{
 
 const postApplyLetsGo = async (req,res,next)=>{
     // 입사지원
+    let theRecruit = await find.findRecruit(req.params.id);
+    if(theRecruit){
+        return res.status(500).json({message:"채용공고 정보를 확인해주세요"});
+    }
     let isApplied = await User.findOne({attributes: ['is_applied']},{
         user_id:req.body.user_id
     });

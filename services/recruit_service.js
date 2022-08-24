@@ -68,5 +68,6 @@ const postDeleteRecruit = async (req,res,next) => {
 module.exports = {
     postDeleteRecruit,
     postNewRecruit,
-    postUpdateRecruit
+    postUpdateRecruit,
+    findRecruit
 }

@@ -2,10 +2,10 @@
 `nodejs`  
   
 **>> 바로 가기 <<**
-#### [소개](https://github.com/yujiniii/wanted_pre_onboarding/edit/main/README.md#-%EC%86%8C%EA%B0%9C)  
-#### [API 정리](https://github.com/yujiniii/wanted_pre_onboarding/edit/main/README.md#-api-%EC%95%88%EB%82%B4)  
-#### [시작하기](https://github.com/yujiniii/wanted_pre_onboarding/edit/main/README.md#-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)  
-#### [사용한 패키지](https://github.com/yujiniii/wanted_pre_onboarding/edit/main/README.md#-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%95%88%EB%82%B4)  
+#### [소개](#-소개)  
+#### [API 정리](#-api-안내)  
+#### [시작하기](#-시작하기)  
+#### [사용한 패키지](#-패키지-안내)  
 
 ## 📌 소개
 기업의 채용공고 관리 및 사용자의 공고 조회, 입사지원 API 서비스입니다.   
@@ -231,7 +231,7 @@ config/dev.env 파일 생성
 POSTGRESQL_PASSWORD= (your password)
 ```
 ## 📌 패키지 안내
-사용한 패키지는  표와 같습니다.
+사용한 패키지는 표와 같습니다.
 |패키지 이름|버전|설명|
 |------|---|---|
 |dotenv|^16.0.1|env 파일 연결을 위해 사용|

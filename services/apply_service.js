@@ -21,22 +21,22 @@ const addCompanyInfoAll = async (array) => {
     return array;
 }
 
-const addAnotherRecruit = async (array) => {
-    let allRecruitId = await Recruit.findAll({attributes: ['recruit_id']},{
+const addAnotherRecruit = async (id) => {
+    let allRecruitId = await Recruit.findAll({},{
         where: {
-            company_id : array.dataValues.company_id
+            company_id : id
             }
         });
     console.log("allRecruitId",allRecruitId);
 
     let ids = []
-    for (const item of allRecruitId) {   
-        ids.push(item.dataValues.recruit_id)    
+    for (const item of allRecruitId) {  
+        if(item.dataValues.company_id == id) {
+            ids.push(item.dataValues.recruit_id);
+        }
     }
 
-    array.dataValues['another_recruit'] = ids;
-    
-    return array;
+    return ids;
 }
 
 
@@ -66,12 +66,15 @@ const getRecruitDetail = async (req,res,next)=>{
     if(!theRecruit){
         return res.status(500).json({message:"채용공고 정보를 확인해주세요"});
     }
-
     // 회사정보추가 
     theRecruit = await addCompanyInfo(theRecruit);
 
      // 회사의 다른 채용공고 추가
-    theRecruit = await addAnotherRecruit(theRecruit);
+    let ids = await addAnotherRecruit(theRecruit.dataValues.company_id);s)
+    theRecruit.dataValues['another_recruit'] = ids;
+    
+
+
 
     res.status(200).json({theRecruit});
 

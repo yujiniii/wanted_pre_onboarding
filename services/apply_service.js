@@ -64,9 +64,6 @@ const getRecruitDetail = async (req,res,next)=>{
      // 회사의 다른 채용공고 추가
     let ids = await addAnotherRecruit(theRecruit.dataValues.company_id);
     theRecruit.dataValues['another_recruit'] = ids;
-    
-
-
 
     res.status(200).json({theRecruit});
 
@@ -78,12 +75,16 @@ const postApplyLetsGo = async (req,res,next)=>{
     if(theRecruit){
         return res.status(500).json({message:"채용공고 정보를 확인해주세요"});
     }
-    let isApplied = await User.findOne({attributes: ['is_applied']},{
-        user_id:req.body.user_id
-    });
+    let isApplied = await User.findOne({
+       where: { 
+        user_id : req.body.user_id 
+    }
+});
+
     if(!isApplied){
         return res.status(500).json({message:"사용자 정보를 확인해주세요"});
     }
+
     isApplied = isApplied.dataValues.is_applied
     if(!isApplied){
         await User.update({

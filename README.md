@@ -242,3 +242,4 @@ POSTGRESQL_PASSWORD= (your password)
 |sequelize|^6.21.3|postgreSQL을 만들고, 제어하기 위한 ORM 패키지 |
 |nodemon|^2.0.19|개발시 서버가 계속 가동할 수 있게 하기 위해 사용|
 
+ 
